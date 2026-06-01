@@ -1,0 +1,56 @@
+spellscribe/
+├── main.py
+├── config.py
+├── data/
+│   └── spells.json
+├── screens/
+│   ├── parchment_wake_screen.py   ← NEW: fade-in parchment + ambient sound
+│   ├── grimoire_screen.py         ← touch ripple → sigil reveal + grid
+│   ├── spell_detail_screen.py
+│   └── cast_screen.py
+├── components/
+│   ├── sigil_card.py
+│   ├── ink_ripple.py              ← now used on grimoire touch reveal
+│   └── particle_system.py
+├── assets/
+│   ├── fonts/
+│   ├── sounds/
+│   └── images/
+│       ├── sigils/
+│       └── backgrounds/
+└── services/
+    ├── audio_manager.py
+    └── gpio_listener.py
+
+data
+screens
+components
+assets
+assets/fonts
+assets/sounds
+assets/images
+assets/images/sigils
+assets/images/backgrounds
+services
+
+In the root (top level):
+  main.py
+  config.py
+
+In data/:
+  spells.json
+
+In screens/:
+  parchment_wake_screen.py
+  grimoire_screen.py
+  spell_detail_screen.py
+  cast_screen.py
+
+In components/:
+  sigil_card.py
+  ink_ripple.py
+  particle_system.py
+
+In services/:
+  audio_manager.py
+  gpio_listener.py
