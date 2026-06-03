@@ -1,21 +1,11 @@
-# This file contains the data for all spells in the game. Each spell is represented as a JSON object with the following properties:
-# - id: a unique identifier for the spell
-# - name: the name of the spell
-# - sigil: the filename of the spell's sigil image 
-# - sphere_level: the power level of the spell (1, 2, or 3)
-# - description: a brief description of the spell's effects
-# - valid_target: a description of what the spell can target
-# - crafting_cost: a description of the materials required to craft the spell
-
-
 [
 {
     "id": "arcane_cage",
     "name": "Arcane Cage",
     "sigil": "arcanecage.png",
     "sphere_level": 1,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The target is frozen in place for 1 minute. They can still turn, fight, and cast spells, but may not move from the spot. They now have the condition Rooted.",
+    "valid_target": "Any creature",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -25,10 +15,7 @@
     "name": "Compel Truth",
     "sigil": "compeltruth.png",
     "sphere_level": 1,
-    "description": """The target must honestly answer the next 3 questions asked by the caster. The target cannot refuse to answer a question,
-     and cannot be deceitful or misleading in their responses. They cannot deliberately speak in a way that the caster cannot understand. 
-     This does not magically impart knowledge of things they do not already know. The Condition resolves once 3 questions are asked by the 
-     caster, or the condition is Dispelled.her.""",
+    "description": "The target must honestly answer the next 3 questions asked by the caster. The target cannot refuse to answer a question, and cannot be deceitful or misleading in their responses. They cannot deliberately speak in a way that the caster cannot understand. This does not magically impart knowledge of things they do not already know. The Condition resolves once 3 questions are asked by the caster, or the condition is Dispelled.",
     "valid_target": "Any Creature without the In-Conflict condition",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
@@ -39,8 +26,7 @@
     "name": "Mending",
     "sigil": "mending.png",
     "sphere_level": 1,
-    "description": """Heals one wound and restores armor to full AP for a single target area of the caster's choice, or fully repairs a broken 
-    shield. This spell has no effect on characters with the unconscious condition.""",
+    "description": "Heals one wound and restores armor to full AP for a single target area of the caster's choice, or fully repairs a broken shield. This spell has no effect on characters with the unconscious condition.",
     "valid_target": "Any Creature or Shield",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
@@ -51,9 +37,7 @@
     "name": "Read Essence",
     "sigil": "readessence.png",
     "sphere_level": 1,
-    "description": """The caster knows all the magical conditions and tags on the target. The target must tell the caster all the magical 
-    conditions and tags clearly and concisely. We strongly encourage you to use out-of-game communication to avoid confusion.Binds a 
-    spoken contract into the aether.""",
+    "description": "The caster knows all the magical conditions and tags on the target. The target must tell the caster all the magical conditions and tags clearly and concisely. We strongly encourage you to use out-of-game communication to avoid confusion.",
     "valid_target": "Any creature",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
@@ -64,9 +48,7 @@
     "name": "Arcane Challenge",
     "sigil": "arcanechallenge.png",
     "sphere_level": 2,
-    "description": """The target has the condition Enthralled -Caster: Duel.  The target must attempt to attack the caster. The target may 
-    not attack anything other than the caster. The effect ends if anyone other than the caster attacks the target, the target or caster 
-    goes Unconscious, or the effect is Dispelled.""",
+    "description": "The target has the condition Enthralled -Caster: Duel.  The target must attempt to attack the caster. The target may not attack anything other than the caster. The effect ends if anyone other than the caster attacks the target, the target or caster goes Unconscious, or the effect is Dispelled.",
     "valid_target": "Any In-Conflict Creature",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
@@ -77,10 +59,7 @@
     "name": "Blind Rage",
     "sigil": "blindrage.png",
     "sphere_level": 2,
-    "description": """The target is Compelled: Attack. The target attacks whichever combatant is closest to them for 1 minute. They cause
-     anyone to receive the Unconscious condition, until they fall Unconscious, or they are Dispelled. When the effect resolves, the target 
-     receives the condition Immune [Compel: Attack] until the next sunrise or sunset, or until this condition is Dispelled.Binds a spoken 
-     contract into the aether.",
+    "description": "The target is Compelled: Attack. The target attacks whichever combatant is closest to them for 1 minute. They cause anyone to receive the Unconscious condition, until they fall Unconscious, or they are Dispelled. When the effect resolves, the target receives the condition Immune [Compel: Attack] until the next sunrise or sunset, or until this condition is Dispelled.",
     "valid_target": "Creatures with the In-Conflict condition",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
@@ -91,8 +70,8 @@
     "name": "Dispel",
     "sigil": "dispel.png",
     "sphere_level": 2,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The target creature, area, or item has all current magical conditions or dispellable magical effects removed and resolved. If there are stacked conditions on the target, the one on top of the stack is resolved, and the next condition on the stack takes effect.",
+    "valid_target": " Any Creature other than the caster, any item with a condition, or an area with a dispellable magical effect",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -102,8 +81,8 @@
     "name": "Friends",
     "sigil": "friends.png",
     "sphere_level": 2,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The target receives the condition Enthralled-Caster: Friends. The target becomes a close friend of the spellcaster for the next 3 minutes. The target will act as if they are friendly with the caster. They assist in tasks, divulge information, and protect the caster. The effects resolve if the caster attacks the target, asks the target to do anything that would cause them immediate harm, after 3 minutes pass, or until Dispelled. The caster cannot force a target to use consumable game items.",
+    "valid_target": " Any Creature without the In-Conflict condition",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -113,8 +92,8 @@
     "name": "Imbue Weapon",
     "sigil": "imbueweapon.png",
     "sphere_level": 2,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The target weapon has the Imbued condition until it breaks a shield, the caster goes Unconscious, the caster stops wielding the Imbued weapon, the weapon strikes an opponent and causes them to go Unconscious, or the effect is Dispelled. This effect is physically represented by a gray or silver strip of fabric hung from the handle of the weapon.",
+    "valid_target": "A Weapon held in the caster's hand",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -124,8 +103,8 @@
     "name": "Sage Armor",
     "sigil": "sagearmor.png",
     "sphere_level": 2,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The caster has the condition Magic Armor: 2. The condition resolves at the next sunrise or sunset, whichever is longer, until their Magic Armor is destroyed or until the condition is Dispelled. This effect is physically represented by a gray or silver strip of fabric hung from the wrist.",
+    "valid_target": "Caster",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -135,8 +114,8 @@
     "name": "Arcane Fortress",
     "sigil": "arcanefortress.png",
     "sphere_level": 3,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The caster creates around themselves a barrier that is impassable to creatures with the Magical Tag. This barrier is physically represented by a 3-inch thick strip of purple fabric that is 30 feet in length, which is joined end to end to make a closed loop. This effect resolves when the caster leaves the circle, the caster goes Unconscious, or the circle is Dispelled.",
+    "valid_target": " Area around the caster",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -146,8 +125,8 @@
     "name": "Resist Magic",
     "sigil": "resistmagic.png",
     "sphere_level": 3,
-    "description": "Binds a spoken contract into the aether.",
-    "valid_target": "One willing creature within arm's reach",
+    "description": "The target cannot be given the conditions Compelled or Enthralled for a duration of one hour. This spell can be Dispelled.",
+    "valid_target": "Any creature",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 }
