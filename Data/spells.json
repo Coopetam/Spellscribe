@@ -1,0 +1,154 @@
+# This file contains the data for all spells in the game. Each spell is represented as a JSON object with the following properties:
+# - id: a unique identifier for the spell
+# - name: the name of the spell
+# - sigil: the filename of the spell's sigil image 
+# - sphere_level: the power level of the spell (1, 2, or 3)
+# - description: a brief description of the spell's effects
+# - valid_target: a description of what the spell can target
+# - crafting_cost: a description of the materials required to craft the spell
+
+
+[
+{
+    "id": "arcane_cage",
+    "name": "Arcane Cage",
+    "sigil": "arcanecage.png",
+    "sphere_level": 1,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "compel_truth",
+    "name": "Compel Truth",
+    "sigil": "compeltruth.png",
+    "sphere_level": 1,
+    "description": """The target must honestly answer the next 3 questions asked by the caster. The target cannot refuse to answer a question,
+     and cannot be deceitful or misleading in their responses. They cannot deliberately speak in a way that the caster cannot understand. 
+     This does not magically impart knowledge of things they do not already know. The Condition resolves once 3 questions are asked by the 
+     caster, or the condition is Dispelled.her.""",
+    "valid_target": "Any Creature without the In-Conflict condition",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "mending",
+    "name": "Mending",
+    "sigil": "mending.png",
+    "sphere_level": 1,
+    "description": """Heals one wound and restores armor to full AP for a single target area of the caster's choice, or fully repairs a broken 
+    shield. This spell has no effect on characters with the unconscious condition.""",
+    "valid_target": "Any Creature or Shield",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+ 
+{
+    "id": "read_essence",
+    "name": "Read Essence",
+    "sigil": "readessence.png",
+    "sphere_level": 1,
+    "description": """The caster knows all the magical conditions and tags on the target. The target must tell the caster all the magical 
+    conditions and tags clearly and concisely. We strongly encourage you to use out-of-game communication to avoid confusion.Binds a 
+    spoken contract into the aether.""",
+    "valid_target": "Any creature",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "arcane_challenge",
+    "name": "Arcane Challenge",
+    "sigil": "arcanechallenge.png",
+    "sphere_level": 2,
+    "description": """The target has the condition Enthralled -Caster: Duel.  The target must attempt to attack the caster. The target may 
+    not attack anything other than the caster. The effect ends if anyone other than the caster attacks the target, the target or caster 
+    goes Unconscious, or the effect is Dispelled.""",
+    "valid_target": "Any In-Conflict Creature",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "blind_rage",
+    "name": "Blind Rage",
+    "sigil": "blindrage.png",
+    "sphere_level": 2,
+    "description": """The target is Compelled: Attack. The target attacks whichever combatant is closest to them for 1 minute. They cause
+     anyone to receive the Unconscious condition, until they fall Unconscious, or they are Dispelled. When the effect resolves, the target 
+     receives the condition Immune [Compel: Attack] until the next sunrise or sunset, or until this condition is Dispelled.Binds a spoken 
+     contract into the aether.",
+    "valid_target": "Creatures with the In-Conflict condition",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "dispel",
+    "name": "Dispel",
+    "sigil": "dispel.png",
+    "sphere_level": 2,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "friends",
+    "name": "Friends",
+    "sigil": "friends.png",
+    "sphere_level": 2,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "imbue_weapon",
+    "name": "Imbue Weapon",
+    "sigil": "imbueweapon.png",
+    "sphere_level": 2,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "sage_armor",
+    "name": "Sage Armor",
+    "sigil": "sagearmor.png",
+    "sphere_level": 2,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "arcane_fortress",
+    "name": "Arcane Fortress",
+    "sigil": "arcanefortress.png",
+    "sphere_level": 3,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+},
+
+{
+    "id": "resist_magic",
+    "name": "Resist Magic",
+    "sigil": "resistmagic.png",
+    "sphere_level": 3,
+    "description": "Binds a spoken contract into the aether.",
+    "valid_target": "One willing creature within arm's reach",
+    "crafting_cost": "Unknown",
+    "sound": "placeholder.wav"
+}
+]
