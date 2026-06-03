@@ -6,8 +6,8 @@ import pygame
 
 # --- SCREEN ---
 # The resolution of the Raspberry Pi 7" touchscreen
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 480
+SCREEN_WIDTH = 480
+SCREEN_HEIGHT = 800
 SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 # How many times per second the screen redraws itself (frames per second)

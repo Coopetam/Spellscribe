@@ -5,6 +5,7 @@
 import pygame
 import sys
 import config
+from services.spell_loader import load_spells
 
 # -------------------------------------------------------
 # INITIALISE PYGAME
@@ -35,6 +36,9 @@ clock = pygame.time.Clock()
 # This variable tracks which screen the app is currently showing.
 # We'll add more states as we build each screen.
 # For now "WAKE" is the only state — it means the book was just opened.
+# Load spell data at startup
+spells = load_spells()
+
 current_state = "WAKE"
 
 # -------------------------------------------------------

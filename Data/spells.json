@@ -71,7 +71,7 @@
     "sigil": "dispel.png",
     "sphere_level": 2,
     "description": "The target creature, area, or item has all current magical conditions or dispellable magical effects removed and resolved. If there are stacked conditions on the target, the one on top of the stack is resolved, and the next condition on the stack takes effect.",
-    "valid_target": " Any Creature other than the caster, any item with a condition, or an area with a dispellable magical effect",
+    "valid_target": "Any Creature other than the caster, any item with a condition, or an area with a dispellable magical effect",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -82,7 +82,7 @@
     "sigil": "friends.png",
     "sphere_level": 2,
     "description": "The target receives the condition Enthralled-Caster: Friends. The target becomes a close friend of the spellcaster for the next 3 minutes. The target will act as if they are friendly with the caster. They assist in tasks, divulge information, and protect the caster. The effects resolve if the caster attacks the target, asks the target to do anything that would cause them immediate harm, after 3 minutes pass, or until Dispelled. The caster cannot force a target to use consumable game items.",
-    "valid_target": " Any Creature without the In-Conflict condition",
+    "valid_target": "Any Creature without the In-Conflict condition",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
@@ -115,7 +115,7 @@
     "sigil": "arcanefortress.png",
     "sphere_level": 3,
     "description": "The caster creates around themselves a barrier that is impassable to creatures with the Magical Tag. This barrier is physically represented by a 3-inch thick strip of purple fabric that is 30 feet in length, which is joined end to end to make a closed loop. This effect resolves when the caster leaves the circle, the caster goes Unconscious, or the circle is Dispelled.",
-    "valid_target": " Area around the caster",
+    "valid_target": "Area around the caster",
     "crafting_cost": "Unknown",
     "sound": "placeholder.wav"
 },
