@@ -6,6 +6,7 @@ import pygame
 import sys
 import config
 from services.spell_loader import load_spells
+from screens.parchment_wake_screen import ParchmentWakeScreen
 
 # -------------------------------------------------------
 # INITIALISE PYGAME
@@ -39,7 +40,14 @@ clock = pygame.time.Clock()
 # Load spell data at startup
 spells = load_spells()
 
+# Load spell data at startup
+spells = load_spells()
+
+# --- SCREEN MANAGER ---
+# This variable holds whichever screen object is currently active.
+# We swap it out whenever the state changes.
 current_state = "WAKE"
+active_screen = ParchmentWakeScreen(screen, spells)
 
 # -------------------------------------------------------
 # MAIN GAME LOOP
@@ -78,7 +86,9 @@ while running:
 
     # --- 2. UPDATE ---
     # This is where we'll update animations and timers.
-    # We'll fill this in as we build each screen.
+        if current_state == "WAKE":
+            dt = clock.get_time()   # milliseconds since last frame
+            active_screen.update(dt)
 
     # --- 3. DRAW ---
     # Fill the screen with black every frame before drawing anything.
@@ -86,8 +96,7 @@ while running:
     if current_state == "SLEEP":
         screen.fill(config.BLACK)
     else:
-        # Temporary placeholder — deep indigo while we build the wake screen
-        screen.fill(config.DEEP_INDIGO)
+        active_screen.draw()
 
     # This pushes everything we just drew to the actual screen.
     # Without this line nothing would appear.

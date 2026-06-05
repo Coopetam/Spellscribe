@@ -31,6 +31,15 @@ GOLD        = (200, 170, 80)
 FONT_MAIN   = None
 FONT_TITLE  = None
 
+# --- ASSETS ---
+# Paths to asset files — update these when real assets are added
+PARCHMENT_IMAGE   = "assets/images/backgrounds/parchment.png"
+PLACEHOLDER_SIGIL = "assets/images/sigils/placeholder.png"
+FONT_PATH         = "assets/fonts/main_font.ttf"
+AMBIENT_SOUND     = "assets/sounds/ambient.wav"
+TOUCH_SOUND       = "assets/sounds/touch.wav"
+CAST_SOUND        = "assets/sounds/cast.wav"
+
 # --- TIMING ---
 # How long the parchment takes to fade in when the book opens (in milliseconds)
 # 1000 milliseconds = 1 second
