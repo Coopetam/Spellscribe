@@ -11,105 +11,82 @@ from screens.parchment_wake_screen import ParchmentWakeScreen
 # -------------------------------------------------------
 # INITIALISE PYGAME
 # -------------------------------------------------------
-# This wakes up all of Pygame's systems — display, audio,
-# fonts, and input. Always the first thing in a Pygame app.
 pygame.init()
+pygame.mixer.init()  # Needed for all audio — touch sounds, ambient, cast sounds
 
 # -------------------------------------------------------
 # CREATE THE SCREEN
 # -------------------------------------------------------
-# This opens the window at the size defined in config.py
-# pygame.FULLSCREEN makes it fill the entire screen (important on the RPi)
-# For now on your PC it will open as a normal window instead
 screen = pygame.display.set_mode(config.SCREEN_SIZE)
 pygame.display.set_caption("Spellscribe — Lipika's Grimoire")
 
 # -------------------------------------------------------
 # CLOCK
 # -------------------------------------------------------
-# The clock controls how fast the game loop runs.
-# We use it to lock the app to 60 frames per second (FPS).
 clock = pygame.time.Clock()
 
 # -------------------------------------------------------
-# SCREEN STATE
+# LOAD SPELL DATA
 # -------------------------------------------------------
-# This variable tracks which screen the app is currently showing.
-# We'll add more states as we build each screen.
-# For now "WAKE" is the only state — it means the book was just opened.
-# Load spell data at startup
 spells = load_spells()
 
-# Load spell data at startup
-spells = load_spells()
-
-# --- SCREEN MANAGER ---
-# This variable holds whichever screen object is currently active.
-# We swap it out whenever the state changes.
+# -------------------------------------------------------
+# SCREEN MANAGER
+# -------------------------------------------------------
+# current_state tracks which state the app is in
+# active_screen holds the screen object that is currently running
 current_state = "WAKE"
 active_screen = ParchmentWakeScreen(screen, spells)
 
 # -------------------------------------------------------
 # MAIN GAME LOOP
 # -------------------------------------------------------
-# This loop runs 60 times per second forever until the app closes.
-# Every frame it does three things:
-#   1. Handle events (taps, keypresses, reed switch)
-#   2. Update the app state (animations, timers)
-#   3. Draw everything to the screen
-
 running = True
 
 while running:
 
     # --- 1. HANDLE EVENTS ---
-    # Pygame collects all input events into a queue each frame.
-    # We loop through them and decide what to do with each one.
     for event in pygame.event.get():
 
-        # If the user closes the window (clicks the X), stop the loop
+        # Close the window
         if event.type == pygame.QUIT:
             running = False
 
-        # KEYBOARD SIMULATION OF REED SWITCH
-        # On your PC we use the SPACEBAR to simulate opening/closing the book.
-        # When the RPi arrives this will be replaced by the GPIO signal.
+        # Spacebar simulates the reed switch (book open/close)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                # Toggle between WAKE (book open) and SLEEP (book closed)
                 if current_state == "SLEEP":
                     current_state = "WAKE"
+                    active_screen = ParchmentWakeScreen(screen, spells)
                     print("Book opened — waking screen")
                 else:
                     current_state = "SLEEP"
                     print("Book closed — sleeping screen")
 
-    # --- 2. UPDATE ---
-    # This is where we'll update animations and timers.
+        # Pass all events to the active screen when awake
         if current_state == "WAKE":
-            dt = clock.get_time()   # milliseconds since last frame
-            active_screen.update(dt)
+            active_screen.handle_event(event)
+
+    # --- 2. UPDATE ---
+    # This runs every frame regardless of whether an event happened
+    if current_state == "WAKE":
+        dt = clock.get_time()   # milliseconds since last frame
+        active_screen.update(dt)
 
     # --- 3. DRAW ---
-    # Fill the screen with black every frame before drawing anything.
-    # This prevents the previous frame from showing through.
     if current_state == "SLEEP":
         screen.fill(config.BLACK)
     else:
         active_screen.draw()
 
-    # This pushes everything we just drew to the actual screen.
-    # Without this line nothing would appear.
+    # Push the frame to the screen
     pygame.display.flip()
 
-    # --- LOCK TO 60 FPS ---
-    # This makes the loop wait if it's running faster than 60fps.
-    # Keeps animations smooth and consistent.
+    # Lock to 60 FPS
     clock.tick(config.FPS)
 
 # -------------------------------------------------------
 # SHUTDOWN
 # -------------------------------------------------------
-# When the loop ends, cleanly shut down Pygame and exit.
 pygame.quit()
 sys.exit()

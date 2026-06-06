@@ -7,6 +7,7 @@
 
 import pygame
 import config
+from components.ink_ripple import InkRipple
 
 class ParchmentWakeScreen:
     """
@@ -55,25 +56,23 @@ class ParchmentWakeScreen:
         # --- TOUCH STATE ---
         # Once the fade is done, we wait for the first touch
         self.touched = False
+        self.ripple = None  # Created when the player touches the screen
 
     def handle_event(self, event):
-        """
-        Listens for input events.
+        """Listens for input events.
         Once the fade is complete, any touch or mouse click triggers
-        the transition to the grimoire screen.
-        """
+        the transition to the grimoire screen."""
         if self.fade_complete and not self.touched:
             if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = event.pos
+                self.ripple = InkRipple(x, y)
                 self.touched = True
-                print("Parchment touched — transitioning to grimoire")
+                print(f"Parchment touched at ({x}, {y}) — ripple started")
 
     def update(self, dt):
-        """
-        Updates the fade animation.
-
+        """Updates the fade animation. 
         dt — delta time in milliseconds (how long since the last frame)
-             This keeps the animation speed consistent regardless of FPS
-        """
+             This keeps the animation speed consistent regardless of FPS"""
         if not self.fade_complete:
             # Add the time since last frame to our elapsed counter
             self.fade_elapsed += dt
@@ -94,11 +93,13 @@ class ParchmentWakeScreen:
                 self.alpha = 0
                 print("Parchment fade complete — waiting for touch")
 
+        # Update the ripple animation if one is active
+        if self.ripple:
+            self.ripple.update(dt)
+
     def draw(self):
-        """
-        Draws the current frame to the screen.
-        Called 60 times per second by the main loop.
-        """
+        """Draws the current frame to the screen.
+        Called 60 times per second by the main loop."""
         # Draw the parchment texture as the base layer
         self.screen.blit(self.parchment, (0, 0))
 
@@ -107,9 +108,14 @@ class ParchmentWakeScreen:
         self.overlay.set_alpha(self.alpha)
         self.screen.blit(self.overlay, (0, 0))
 
+        # Draw the ripple on top of the parchment if active
+        if self.ripple:
+           self.ripple.draw(self.screen)
+
     def is_done(self):
-        """
-        Returns True when the player has touched the screen after the fade.
-        main.py uses this to know when to switch to the grimoire screen.
-        """
-        return self.touched
+        """Returns True when the player has touched the screen after the fade.
+        main.py uses this to know when to switch to the grimoire screen."""
+    
+        if self.ripple:
+            return self.ripple.is_finished()
+        return False
