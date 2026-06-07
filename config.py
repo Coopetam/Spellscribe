@@ -39,6 +39,7 @@ FONT_PATH         = "assets/fonts/main_font.ttf"
 AMBIENT_SOUND     = "assets/sounds/ambient.wav"
 TOUCH_SOUND       = "assets/sounds/touch.wav"
 CAST_SOUND        = "assets/sounds/cast.wav"
+BACK_BUTTON_IMAGE = "assets/images/back_button.png"
 
 # --- TIMING ---
 # How long the parchment takes to fade in when the book opens (in milliseconds)

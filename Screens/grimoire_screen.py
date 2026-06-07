@@ -198,25 +198,17 @@ class GrimoireScreen:
                 break
 
     def update(self, dt):
-        """
-        Updates reveal animations and pulse effects.
-        """
+        """Fades all sigils in together at the same rate. No radial order — all reveal simultaneously."""
         self.elapsed += dt
 
-        # --- REVEAL ---
-        # The ripple radius at this point in time
-        ripple_radius = (self.elapsed / config.RIPPLE_DURATION) * max(self.reveal_distances or [1])
-        ripple_radius = min(ripple_radius, max(self.reveal_distances or [1]))
+        # Progress goes from 0.0 to 1.0 over RIPPLE_DURATION
+        progress = min(self.elapsed / config.RIPPLE_DURATION, 1.0)
 
-        all_revealed = True
-        for i in range(len(self.spells)):
-            if self.reveal_distances[i] <= ripple_radius:
-                # Bloom in over 400ms once the wave reaches this sigil
-                self.reveal_alphas[i] = min(255, self.reveal_alphas[i] + (255 * dt / 400))
-            else:
-                all_revealed = False
+        # All sigils fade in together
+        alpha = int(255 * progress)
+        self.reveal_alphas = [alpha] * len(self.spells)
 
-        if all_revealed and not self.reveal_complete:
+        if progress >= 1.0 and not self.reveal_complete:
             self.reveal_complete = True
             print("All sigils revealed — grimoire ready")
 
@@ -239,17 +231,12 @@ class GrimoireScreen:
                 continue
 
             # --- PULSE ---
-            # Sine wave oscillates between PULSE_MIN_ALPHA and 1.0
-            pulse = (math.sin(
-                pygame.time.get_ticks() * 0.001 * config.PULSE_SPEED
-                + self.pulse_phases[i]
-            ) + 1) / 2  # normalise to 0.0 — 1.0
-
-            pulse_alpha = config.PULSE_MIN_ALPHA + pulse * (1.0 - config.PULSE_MIN_ALPHA)
+            # No pulse — sigils stay solid once revealed
+            final_alpha = int(self.reveal_alphas[i])
 
             # Combine reveal alpha and pulse alpha
             # Reveal alpha goes 0→255, pulse modulates on top of that
-            final_alpha = int(self.reveal_alphas[i] * pulse_alpha)
+            final_alpha = int(self.reveal_alphas[i])
 
             # --- DRAW SIGIL ---
             sigil = self.sigil_images[i].copy()

@@ -97,12 +97,12 @@ while running:
 
         # DETAIL → GRIMOIRE when Back is tapped
         elif current_state == "DETAIL" and active_screen.is_done():
-            if active_screen.get_outcome() == "back":
-                print("Returning to grimoire")
-                current_state = "GRIMOIRE"
-                active_screen = GrimoireScreen(screen, spells, parchment,
-                                               (config.SCREEN_WIDTH // 2,
-                                                config.SCREEN_HEIGHT // 2))
+            print("Returning to grimoire")
+            current_state = "GRIMOIRE"
+            active_screen = GrimoireScreen(
+                screen, spells, parchment,
+                (config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2)
+            )
 
     # --- 3. DRAW ---
     if current_state == "SLEEP":
