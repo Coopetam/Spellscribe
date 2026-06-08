@@ -42,7 +42,7 @@ class SpellDetailScreen:
 
         # --- SIGIL ---
         # About half the screen width
-        self.sigil_display_size = config.SCREEN_WIDTH // 2
+        self.sigil_display_size = int(config.SCREEN_WIDTH * 0.75)
         self.sigil_scaled = pygame.transform.scale(
             sigil_image,
             (self.sigil_display_size, self.sigil_display_size)
@@ -53,14 +53,14 @@ class SpellDetailScreen:
 
         # --- FONTS ---
         try:
-            self.font_large  = pygame.font.Font(config.FONT_PATH, 26)
-            self.font_medium = pygame.font.Font(config.FONT_PATH, 19)
-            self.font_small  = pygame.font.Font(config.FONT_PATH, 16)
+            self.font_large  = pygame.font.Font(config.FONT_PATH, 32)
+            self.font_medium = pygame.font.Font(config.FONT_PATH, 24)
+            self.font_small  = pygame.font.Font(config.FONT_PATH, 20)
         except FileNotFoundError:
             print("WARNING: Font not found — using default font")
-            self.font_large  = pygame.font.Font(None, 30)
-            self.font_medium = pygame.font.Font(None, 24)
-            self.font_small  = pygame.font.Font(None, 20)
+            self.font_large  = pygame.font.Font(None, 36)
+            self.font_medium = pygame.font.Font(None, 28)
+            self.font_small  = pygame.font.Font(None, 24)
 
         # --- PRE-RENDER TEXT ---
         sphere = ROMAN.get(spell.get("sphere_level", 1), "I")
