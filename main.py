@@ -9,6 +9,7 @@ from services.spell_loader import load_spells
 from screens.parchment_wake_screen import ParchmentWakeScreen
 from screens.grimoire_screen import GrimoireScreen
 from screens.spell_detail_screen import SpellDetailScreen
+from services.audio_manager import start_ambient, stop_ambient, fade_out_ambient
 
 # -------------------------------------------------------
 # INITIALISE PYGAME
@@ -37,8 +38,8 @@ spells = load_spells()
 # -------------------------------------------------------
 # current_state tracks which state the app is in
 # active_screen holds the screen object that is currently running
-current_state = "WAKE"
-active_screen = ParchmentWakeScreen(screen, spells)
+current_state = "SLEEP"
+active_screen = None  # No screen active when sleeping
 
 # -------------------------------------------------------
 # MAIN GAME LOOP
@@ -63,16 +64,14 @@ while running:
                 if current_state == "SLEEP":
                     current_state = "WAKE"
                     active_screen = ParchmentWakeScreen(screen, spells)
+                    start_ambient()
                     print("Book opened — waking screen")
                 else:
                     current_state = "SLEEP"
+                    fade_out_ambient()
                     print("Book closed — sleeping screen")
 
-        # Pass all events to the active screen when awake
-        if current_state in ("WAKE", "GRIMOIRE"):
-            active_screen.handle_event(event)
-
-   # --- 2. UPDATE ---
+    # --- 2. UPDATE ---
     if current_state in ("WAKE", "GRIMOIRE", "DETAIL"):
         dt = clock.get_time()
         active_screen.update(dt)
